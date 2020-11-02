@@ -2,42 +2,70 @@ document.addEventListener('keyup', startControls)
 const advice = document.querySelector('.advice')
 const squares = document.querySelectorAll('.grid div')
 const lose = document.querySelector('.lose')
+const score = document.querySelector('.score')
 
 let playing = false
 let direction = 0
-let currentSnake = [42,41]
+let currentSnake = []
+let freezeSnake = []
 const intervalo = 70
 let apple = 0
 let tail = 0
 let limits = []
-const find = 0;
+let printing = 0
+
 function startControls(e){
+  
+  if(printing === 0){
     if (!playing) {
         if (e.keyCode === 39 || e.keyCode === 40) {
+
+            if (currentSnake === 0){
+            freezeSnake.forEach(index => squares[index].classList.remove('snake'))
+            squares[apple].classList.remove('apple')
+            lose.classList.add('d-none')
+            score.classList.add('d-none')
+
+            direction = 0
+            tail = 0
+            apple = 0
+            }
+            
             advice.classList.add('d-none');
-            e.keyCode === 39 ? direction = 'right' : direction = 'down';
+            
+            if (e.keyCode === 39){
+            direction = 'right' 
+            currentSnake = [42,41]     
+            }
+            else {
+              direction = 'down'
+              currentSnake = [81,41]
+              
+            } 
             playing = true
             printSnake()
             randomApple();
-        } 
-        
-    } else {  
+          } 
+    } else {
+          printing = 1  
         if(e.keyCode === 39 && direction != 'left') {
-           setTimeout(direction = 'right',10)
+           direction = 'right'
           } else if (e.keyCode === 38 && direction != 'down') {
-            setTimeout(direction = 'up',10)
+            direction = 'up'
           } else if (e.keyCode === 37 && direction != 'right') {
-            setTimeout(direction = 'left',10)
+            direction = 'left'
           } else if (e.keyCode === 40 && direction != 'up') {
-            setTimeout(direction = 'down',10)
+            direction = 'down'
           }
 
     }
+}
 }
 
 function printSnake(){
     currentSnake.forEach(index => squares[index].classList.add('snake'))
     setTimeout(moveSnake, intervalo);
+    
 }
 
 function moveSnake(){
@@ -56,8 +84,7 @@ function moveSnake(){
       printSnake();
       eatApple(); //question
       collision();//question
-
- 
+      printing = 0
 }
 
 function eatApple(){
@@ -78,19 +105,30 @@ function randomApple(){
 }
 }
 
-
 function growSnake(){
         const newtail = tail + directionHead
         currentSnake.push(newtail)
-        console.log(currentSnake)
+       
 }
 
 function collision(){
   if (limits.some((element) => element.classList.contains('snake')) || currentSnake.some((element) => element === currentSnake[0] + directionHead)){
-    currentSnake = 0
+    freezeSnake = currentSnake
     lose.classList.remove('d-none')
+    score.classList.remove('d-none')
+    score.innerHTML = `Score: ${currentSnake.length - 2}`
+    currentSnake = 0
+    setTimeout(playingFalse,2000)
+    
   }
 }
+
+function playingFalse() {
+  playing = false
+  printing = 0
+}
+
+// limits value
 
 for(i=0;i<40;i++){
   limits.push(squares[i]);
@@ -104,5 +142,4 @@ for(i=79;i<1600;i+=40){
 for(i=1560;i<1600;i++){
   limits.push(squares[i]);
 }
-console.log(limits);
 

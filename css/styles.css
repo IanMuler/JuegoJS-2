@@ -35,6 +35,15 @@ body{
     background-color: #99a377;
 }
 
+.final{
+    width: 150px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .advice {
     width: 100px;
     height: 60px;  
@@ -45,6 +54,24 @@ body{
     font-size: 30px;
     border : solid 4px#4A5623;
     position: absolute;
+}
+
+.lose{
+    width: 100px;
+    height: 60px;  
+    color: #4A5623;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    border : solid 4px#4A5623;
+}
+.score{  
+    color: #4A5623;
+    text-align: center;
+    display: flex;
+    font-size: 30px;
+
 }
 
 .d-none{
