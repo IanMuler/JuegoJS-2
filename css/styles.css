@@ -14,7 +14,12 @@ body{
     font-family: 'VT323', monospace;
 }
 
+.game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
 
 .grid {
     width: 300px;
@@ -85,8 +90,8 @@ body{
 }
 
 .buttons{
-    width: 170px;
-    height: 170px;
+    width: 200px;
+    height: 200px;
     
     position: absolute;
     bottom: 10px;
@@ -97,8 +102,8 @@ body{
 }
 .buttons img
 {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     background-color: aliceblue;
     border-radius: 50%;
 }
@@ -135,8 +140,18 @@ body{
     body{
     background-image: none;
     background-color: hsl(225, 7%, 11%);
+    align-items: baseline;
+    }
+
+    .game{
+        margin-top: 30px;
+    }
+
+    .buttons{
+        margin-bottom: 30px;
     }
 }
+
  @media (min-width: 800px){
         .buttons {
             display: none;
