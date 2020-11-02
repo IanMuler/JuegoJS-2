@@ -3,6 +3,8 @@ const advice = document.querySelector('.advice')
 const squares = document.querySelectorAll('.grid div')
 const lose = document.querySelector('.lose')
 const score = document.querySelector('.score')
+const button = document.querySelector('.buttons')
+button.addEventListener('click', startControls)
 
 let playing = false
 let direction = 0
@@ -18,7 +20,7 @@ function startControls(e){
   
   if(printing === 0){
     if (!playing) {
-        if (e.keyCode === 39 || e.keyCode === 40) {
+        if (e.keyCode === 39 || e.keyCode === 40 || e.target.id === 'right' || e.target.id === 'down') {
 
             if (currentSnake === 0){
             freezeSnake.forEach(index => squares[index].classList.remove('snake'))
@@ -33,7 +35,7 @@ function startControls(e){
             
             advice.classList.add('d-none');
             
-            if (e.keyCode === 39){
+            if (e.keyCode === 39 || e.target.id === 'right'){
             direction = 'right' 
             currentSnake = [42,41]     
             }
@@ -48,13 +50,13 @@ function startControls(e){
           } 
     } else {
           printing = 1  
-        if(e.keyCode === 39 && direction != 'left') {
+        if(e.keyCode === 39 && direction != 'left' || e.target.id === 'right' && direction != 'left' ) {
            direction = 'right'
-          } else if (e.keyCode === 38 && direction != 'down') {
+          } else if (e.keyCode === 38 && direction != 'down' || e.target.id === 'up' && direction != 'down' ) {
             direction = 'up'
-          } else if (e.keyCode === 37 && direction != 'right') {
+          } else if (e.keyCode === 37 && direction != 'right' || e.target.id === 'left' && direction != 'right' ) {
             direction = 'left'
-          } else if (e.keyCode === 40 && direction != 'up') {
+          } else if (e.keyCode === 40 && direction != 'up' || e.target.id === 'down' && direction != 'up' ) {
             direction = 'down'
           }
 
