@@ -1,25 +1,56 @@
 *{
     padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    margin: 0;   
 }
 
 body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    height: 100vh;
+    background-image: url(https://wallpapercave.com/wp/wp285007.png);
+    background-position: 49.9% 25%;
+    background-size: 2300px;
+    font-family: 'VT323', monospace;
 }
 
 .grid {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.limits{
+    position: absolute;
+    width: 285px;
+    height: 285px;
     border: 1px solid black;
-    
 }
 
 .grid div{
-    width: 40px;
-    height: 40px;
-    border: 1px solid yellow
+    width: 2.5%;
+    height: 2.5%;
+    background-color: #99a377;
+}
+
+.advice {
+    width: 100px;
+    height: 60px;  
+    color: #4A5623;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    border : solid 4px#4A5623;
+    position: absolute;
+}
+
+.d-none{
+    display: none;
+}
+
+.grid .snake, .grid .apple {
+    background-color: #4A5623;
 }
